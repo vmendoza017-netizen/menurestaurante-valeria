@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejemplo con Media Queries y Bootstrap</title>
+
+<!-- Bootstrap 5 CDN -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.5s ease;
+    }
+
+    .container, .container-fluid {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-top: 40px;
+    }
+
+    /* Media Queries para fondo */
+    @media (max-width: 599px) {
+    body {
+        background-color: #d3d3d3; /* Gris */
+    }
+
+    .container, .container-fluid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    }
+
+    @media (min-width: 600px) and (max-width: 899px) {
+    body {
+        background-color: #a0522d; /* Café (sienna) */
+    }
+    }
+
+    @media (min-width: 900px) and (max-width: 1199px) {
+    body {
+        background-color: #800080; /* Morado */
+    }
+    }
+
+    @media (min-width: 1200px) {
+    body {
+        background-color: #13a5e9; /* Azul */
+    }
+    }
+
+    img {
+    max-width: 100%;
+    height: auto;
+    margin-right: 15px;
+    }
+</style>
+</head>
+<body>
+
+<!-- Div con clase container -->
+<div class="container">
+    <img src="logo.jpg" alt="Ejemplo de imagen">
+    <p>Este es un párrafo dentro de un contenedor con clase <code>container</code>.</p>
+</div>
+
+<!-- Div con clase container-fluid -->
+<div class="container-fluid">
+    <p>Este es el primer párrafo dentro de un contenedor con clase <code>container-fluid</code>.</p>
+    <p>Este es el segundo párrafo dentro del mismo contenedor.</p>
+</div>
+
+</body>
+</html>

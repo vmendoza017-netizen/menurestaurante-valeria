@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mostrar y ocultar div</title>
+<style>
+    #miDiv {
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    margin: 20px auto;
+    background-color: lightblue;
+    color: darkblue;
+    border: 2px solid #0077cc;
+    border-radius: 10px;
+    transition: background-color 0.5s ease, opacity 0.5s ease;
+    }
+
+    .oculto {
+    opacity: 0;
+    }
+
+    .botones {
+    text-align: center;
+    margin-top: 10px;
+    }
+
+    button {
+    margin: 0 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    }
+</style>
+</head>
+<body>
+
+<div id="miDiv">¡Hola, soy un div!</div>
+
+<div class="botones">
+    <button id="btnOcultar">Ocultar div</button>
+    <button id="btnMostrar">Mostrar div</button>
+</div>
+
+<script>
+    const div = document.getElementById('miDiv');
+    const btnOcultar = document.getElementById('btnOcultar');
+    const btnMostrar = document.getElementById('btnMostrar');
+
+    // Estilos iniciales
+    div.style.color = 'darkblue';
+    div.style.width = '200px';
+
+    // Ocultar el div con transición
+    btnOcultar.addEventListener('click', () => {
+    div.style.backgroundColor = 'lightcoral';
+    div.classList.add('oculto');
+    setTimeout(() => {
+        div.style.display = 'none';
+    }, 500);
+    });
+
+    // Mostrar el div nuevamente
+    btnMostrar.addEventListener('click', () => {
+    div.style.display = 'block';
+    div.style.backgroundColor = 'lightblue';
+      // Forzar un reflow para que la transición funcione al mostrarlo
+    void div.offsetWidth;
+    div.classList.remove('oculto');
+    });
+</script>
+
+</body>

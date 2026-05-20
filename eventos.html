@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <title>Ejemplo Corregido</title>
+</head>
+<body>
+    <button onclick="miFuncion()"> 
+        Click aquí
+    </button>
+
+    <form onsubmit="return validarFormulario()">
+        <input type="text" required>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <div onmouseover="cambiarColor()">
+        Pasa el ratón por aquí
+    </div>
+
+    <select id="miSelect" onchange="mostrarSeleccion()">
+        <option value="">--Elige una opción--</option>
+        <option value="Manzana">Manzana</option>
+        <option value="Naranja">Naranja</option>
+    </select>
+
+    <button id="miBoton">Haz clic aquí</button>
+
+    <script>
+        function mostrarMensaje() {
+            alert("Hola me da gusto conocerte!");
+        }
+        const boton = document.getElementById("miBoton");
+        boton.addEventListener("click", mostrarMensaje);
+            console.log(event);
+    </script>
+
+    <button id="miBoton">Picale aquí</button>
+
+    <script>
+        const button = document.getElementById("miBoton");
+        boton.addEventListener("click", function(event){
+            console.log(event);
+        });
+    </script>
+
+</body>
+</html>

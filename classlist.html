@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejemplo con classList</title>
+<style>
+    #miDiv {
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    }
+    .bg-primary {
+    background-color: blue;
+    }
+
+    .bg-Val {
+    background-color: rgb(129, 194, 141);
+    }
+
+    .text-white {
+    color: white;
+    }
+    .border {
+    border: 2px solid red;
+    }
+
+    .fondo {
+    background-color: rgb(204, 141, 185);
+    }
+
+</style>
+</head>
+<body>
+<div id="miDiv">¡Hola, soy un div!</div>
+<button id="btn">Alternar Borde</button>
+<button id="btn2">Alternar fondo</button>
+<script>
+    const div = document.getElementById('miDiv');
+    const button = document.getElementById('btn');
+    const button2 = document.getElementById('btn2');
+    // Al cargar, se añaden estas clases permanentemente
+    div.classList.add('bg-primary', 'text-white');
+    div.classList.remove('bg-primary', 'text-white');
+    div.classList.add('bg-Val', 'text-black');
+    // Alternar la clase "border" al hacer clic
+    button.addEventListener('click', () => {
+    div.classList.toggle('border');
+    })
+    button2.addEventListener('click', () => {
+    div.classList.toggle('fondo');
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>PotterAPI Fetch Example</title>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    }
+    .book {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    }
+    .book img {
+    max-width: 150px;
+    display: block;
+    margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Libros de Harry Potter</h1>
+<div id="books-container">
+    <!-- Aquí se agregarán los libros -->
+</div>
+<button id="load-more">Cargar más</button>
+
+<script>
+    const baseURL = 'https://potterapi-fedeperin.vercel.app/en/books';
+    let currentPage = 1;
+    const maxPerPage = 5;  // cuántos libros traer por página
+
+    async function fetchBooks(page = 1, max = maxPerPage) {
+    const url = new URL(baseURL);
+    url.searchParams.append('page', page);
+    url.searchParams.append('max', max);
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+        throw new Error('HTTP error! status: ' + response.status);
+        }
+        const books = await response.json();
+        return books;
+    } catch (error) {
+        console.error('Error al obtener los libros:', error);
+        return [];
+    }
+    }
+
+    function renderBooks(books) {
+    const container = document.getElementById('books-container');
+    books.forEach(book => {
+        const div = document.createElement('div');
+        div.classList.add('book');
+
+        const img = document.createElement('img');
+        img.src = book.cover;
+        img.alt = `Cover de ${book.title}`;
+
+        const title = document.createElement('h2');
+        title.textContent = `${book.title} (${book.originalTitle})`;
+
+        const release = document.createElement('p');
+        release.textContent = `Lanzamiento: ${book.releaseDate}`;
+
+        const pages = document.createElement('p');
+        pages.textContent = `Páginas: ${book.pages}`;
+
+        const desc = document.createElement('p');
+        desc.textContent = book.description;
+
+        div.appendChild(img);
+        div.appendChild(title);
+        div.appendChild(release);
+        div.appendChild(pages);
+        div.appendChild(desc);
+
+        container.appendChild(div);
+    });
+    }
+
+    // Cargar los primeros libros al cargar la página
+    document.addEventListener('DOMContentLoaded', async () => {
+    const books = await fetchBooks(currentPage, maxPerPage);
+    renderBooks(books);
+    });
+
+    // Manejar botón de "Cargar más"
+    document.getElementById('load-more').addEventListener('click', async () => {
+    currentPage += 1;
+    const moreBooks = await fetchBooks(currentPage, maxPerPage);
+    if (moreBooks.length > 0) {
+        renderBooks(moreBooks);
+    } else {
+        alert('No hay más libros para mostrar.');
+        document.getElementById('load-more').disabled = true;
+    }
+    });
+
+</script>
+
+</body>
+</html>
